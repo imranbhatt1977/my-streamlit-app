@@ -1,239 +1,100 @@
-{
- "cells": [
-  {
-   "cell_type": "code",
-   "execution_count": 1,
-   "id": "f98ff088-f0c6-465b-91f8-d81b93379c68",
-   "metadata": {},
-   "outputs": [
-    {
-     "name": "stderr",
-     "output_type": "stream",
-     "text": [
-      "2025-11-27 10:49:01.604 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:01.604 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.024 \n",
-      "  \u001b[33m\u001b[1mWarning:\u001b[0m to view this Streamlit app on a browser, run it with the following\n",
-      "  command:\n",
-      "\n",
-      "    streamlit run C:\\Users\\imran\\AppData\\Roaming\\Python\\Python312\\site-packages\\ipykernel_launcher.py [ARGUMENTS]\n",
-      "2025-11-27 10:49:03.024 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.024 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.024 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.024 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.024 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.024 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.024 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.040 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.040 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.041 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.041 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.042 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.044 Session state does not function when running a script without `streamlit run`\n",
-      "2025-11-27 10:49:03.045 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.045 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.046 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.047 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.047 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.047 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.047 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.047 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.047 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.047 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.047 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.057 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.058 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.059 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.059 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.060 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.061 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.063 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.064 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.065 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.066 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.067 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.068 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.069 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.070 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.071 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.071 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.071 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.074 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.074 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.076 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.077 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.078 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.079 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.080 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.081 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.082 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.082 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.083 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.085 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.087 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.088 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.089 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.090 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.092 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.093 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-11-27 10:49:03.094 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n"
-     ]
-    },
-    {
-     "data": {
-      "text/plain": [
-       "DeltaGenerator()"
-      ]
-     },
-     "execution_count": 1,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "import streamlit as st\n",
-    "import pdfplumber\n",
-    "import pandas as pd\n",
-    "import io\n",
-    "import re\n",
-    "\n",
-    "# --- App Configuration ---\n",
-    "st.set_page_config(page_title=\"Student KSB Mapper\", layout=\"wide\")\n",
-    "\n",
-    "st.title(\"🎓 Student Assignment Mapper\")\n",
-    "st.markdown(\"\"\"\n",
-    "This tool scans your **Main Document** for specific **KSB references** \n",
-    "and generates a mapping matrix automatically.\n",
-    "\"\"\")\n",
-    "\n",
-    "# --- Sidebar: Inputs ---\n",
-    "st.sidebar.header(\"1. Project Details\")\n",
-    "unit_name = st.sidebar.text_input(\"Unit Name/Code\", placeholder=\"e.g. Unit 5 - Leadership\")\n",
-    "doc_title = st.sidebar.text_input(\"Document Title\", placeholder=\"e.g. Portfolio Submission\")\n",
-    "\n",
-    "st.sidebar.header(\"2. Define KSBs\")\n",
-    "st.sidebar.info(\"Enter the KSBs you want to search for (one per line).\")\n",
-    "ksb_input_raw = st.sidebar.text_area(\"KSB List\", placeholder=\"K1\\nK2\\nS1\\nS4\\nB1\")\n",
-    "\n",
-    "# Process KSB list into a clean list\n",
-    "ksb_list = [x.strip() for x in ksb_input_raw.split('\\n') if x.strip()]\n",
-    "\n",
-    "st.sidebar.header(\"3. Upload Document\")\n",
-    "uploaded_file = st.sidebar.file_uploader(\"Upload Main Document (PDF only)\", type=['pdf'])\n",
-    "\n",
-    "# --- Logic Functions ---\n",
-    "def extract_mappings(file, search_terms):\n",
-    "    results = []\n",
-    "    \n",
-    "    with pdfplumber.open(file) as pdf:\n",
-    "        total_pages = len(pdf.pages)\n",
-    "        \n",
-    "        # Progress bar\n",
-    "        progress_bar = st.progress(0)\n",
-    "        \n",
-    "        for i, page in enumerate(pdf.pages):\n",
-    "            page_num = i + 1\n",
-    "            text = page.extract_text()\n",
-    "            \n",
-    "            if text:\n",
-    "                for term in search_terms:\n",
-    "                    # Use word boundary regex for exact matching\n",
-    "                    pattern = r'\\b' + re.escape(term) + r'\\b'\n",
-    "                    if re.search(pattern, text, re.IGNORECASE):\n",
-    "                        results.append({\n",
-    "                            \"Unit\": unit_name,\n",
-    "                            \"Title\": doc_title,\n",
-    "                            \"KSB Reference\": term,\n",
-    "                            \"Page Number\": page_num\n",
-    "                        })\n",
-    "            \n",
-    "            # Update progress\n",
-    "            progress_bar.progress((i + 1) / total_pages)\n",
-    "            \n",
-    "    return results\n",
-    "\n",
-    "# --- Main Execution ---\n",
-    "if st.button(\"Generate Mapping Document\", type=\"primary\"):\n",
-    "    if not uploaded_file:\n",
-    "        st.error(\"Please upload a Main Document PDF.\")\n",
-    "    elif not ksb_list:\n",
-    "        st.error(\"Please enter at least one KSB to search for.\")\n",
-    "    else:\n",
-    "        with st.spinner(\"Scanning document...\"):\n",
-    "            try:\n",
-    "                # Reset file pointer\n",
-    "                uploaded_file.seek(0)\n",
-    "                \n",
-    "                # 1. Run extraction\n",
-    "                mappings = extract_mappings(uploaded_file, ksb_list)\n",
-    "                \n",
-    "                # 2. Create DataFrame\n",
-    "                if mappings:\n",
-    "                    df = pd.DataFrame(mappings)\n",
-    "                    \n",
-    "                    # Sort by KSB then Page Number\n",
-    "                    df = df.sort_values(by=['KSB Reference', 'Page Number'])\n",
-    "                    \n",
-    "                    # 3. Display Preview\n",
-    "                    st.success(f\"Found {len(df)} matches!\")\n",
-    "                    st.dataframe(df, use_container_width=True)\n",
-    "                    \n",
-    "                    # 4. Convert to Excel for Download\n",
-    "                    output = io.BytesIO()\n",
-    "                    with pd.ExcelWriter(output, engine='openpyxl') as writer:\n",
-    "                        df.to_excel(writer, index=False, sheet_name='Mapping')\n",
-    "                    \n",
-    "                    st.download_button(\n",
-    "                        label=\"📥 Download Mapping (.xlsx)\",\n",
-    "                        data=output.getvalue(),\n",
-    "                        file_name=\"KSB_Mapping_Document.xlsx\",\n",
-    "                        mime=\"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\"\n",
-    "                    )\n",
-    "                else:\n",
-    "                    st.warning(\"No KSBs found in the document. Check your spelling or file content.\")\n",
-    "                    \n",
-    "            except Exception as e:\n",
-    "                st.error(f\"An error occurred: {e}\")\n",
-    "\n",
-    "# --- Instructions Footer ---\n",
-    "st.markdown(\"---\")\n",
-    "st.markdown(\"### How to use this app:\")\n",
-    "st.markdown(\"\"\"\n",
-    "1. **Enter Details:** Type the Unit and Title on the left.\n",
-    "2. **List KSBs:** Paste your specific KSB codes (e.g., `K5`, `S12`) on the left.\n",
-    "3. **Upload:** Drag and drop your assignment/thesis PDF.\n",
-    "4. **Generate:** Click the button to scan the PDF. The app will look for the exact text of your KSBs and tell you which page they are on.\n",
-    "\"\"\")"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": None,
-   "id": "7c0c5463-b731-473f-bba5-9f2bf8ca7425",
-   "metadata": {},
-   "outputs": [],
-   "source": []
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 3 (ipykernel)",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython3",
-   "version": "3.12.4"
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 5
-}
+import streamlit as st
+import pdfplumber
+import pandas as pd
+import io
+import re
+
+# --- App Configuration ---
+st.set_page_config(page_title="Student KSB Mapper", layout="wide")
+
+st.title("🎓 Student Assignment Mapper")
+st.markdown("""
+This tool scans your **Main Document** for specific **KSB references** 
+and generates a mapping matrix automatically.
+""")
+
+# --- Sidebar: Inputs ---
+st.sidebar.header("1. Project Details")
+unit_name = st.sidebar.text_input("Unit Name/Code", placeholder="e.g. Unit 5 - Leadership")
+doc_title = st.sidebar.text_input("Document Title", placeholder="e.g. Portfolio Submission")
+
+st.sidebar.header("2. Define KSBs")
+st.sidebar.info("Enter the KSBs you want to search for (one per line).")
+ksb_input_raw = st.sidebar.text_area("KSB List", placeholder="K1\nK2\nS1\nS4\nB1")
+
+# Process KSB list into a clean list
+ksb_list = [x.strip() for x in ksb_input_raw.split('\n') if x.strip()]
+
+st.sidebar.header("3. Upload Document")
+uploaded_file = st.sidebar.file_uploader("Upload Main Document (PDF only)", type=['pdf'])
+
+# --- Logic Functions ---
+def extract_mappings(file, search_terms):
+    results = []
+    with pdfplumber.open(file) as pdf:
+        total_pages = len(pdf.pages)
+        progress_bar = st.progress(0)
+
+        for i, page in enumerate(pdf.pages):
+            page_num = i + 1
+            text = page.extract_text()
+
+            if text:
+                for term in search_terms:
+                    pattern = r'\b' + re.escape(term) + r'\b'
+                    if re.search(pattern, text, re.IGNORECASE):
+                        results.append({
+                            "Unit": unit_name,
+                            "Title": doc_title,
+                            "KSB Reference": term,
+                            "Page Number": page_num
+                        })
+
+            progress_bar.progress((i + 1) / total_pages)
+
+    return results
+
+# --- Main Execution ---
+if st.button("Generate Mapping Document", type="primary"):
+    if not uploaded_file:
+        st.error("Please upload a Main Document PDF.")
+    elif not ksb_list:
+        st.error("Please enter at least one KSB to search for.")
+    else:
+        with st.spinner("Scanning document..."):
+            try:
+                uploaded_file.seek(0)
+                mappings = extract_mappings(uploaded_file, ksb_list)
+
+                if mappings:
+                    df = pd.DataFrame(mappings)
+                    df = df.sort_values(by=['KSB Reference', 'Page Number'])
+
+                    st.success(f"Found {len(df)} matches!")
+                    st.dataframe(df, use_container_width=True)
+
+                    output = io.BytesIO()
+                    with pd.ExcelWriter(output, engine='openpyxl') as writer:
+                        df.to_excel(writer, index=False, sheet_name='Mapping')
+
+                    st.download_button(
+                        label="📥 Download Mapping (.xlsx)",
+                        data=output.getvalue(),
+                        file_name="KSB_Mapping_Document.xlsx",
+                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                    )
+                else:
+                    st.warning("No KSBs found in the document. Check your spelling or file content.")
+
+            except Exception as e:
+                st.error(f"An error occurred: {e}")
+
+# --- Instructions Footer ---
+st.markdown("---")
+st.markdown("### How to use this app:")
+st.markdown("""
+1. **Enter Details:** Type the Unit and Title on the left.
+2. **List KSBs:** Paste your specific KSB codes (e.g., `K5`, `S12`) on the left.
+3. **Upload:** Drag and drop your assignment/thesis PDF.
+4. **Generate:** Click the button to scan the PDF. The app will look for the exact text of your KSBs and tell you which page they are on.
+""")
