@@ -3,88 +3,122 @@ import pdfplumber
 import pandas as pd
 import io
 import re
+from docx import Document
 
 # --- App Configuration ---
-st.set_page_config(page_title="Student KSB Mapper", layout="wide")
+st.set_page_config(page_title="Multi-Document KSB Mapper", layout="wide")
 
-st.title("🎓 Student Assignment Mapper")
+st.title("📚 Multi-Document Student KSB Mapper")
 st.markdown("""
-This tool scans your **Main Document** for specific **KSB references** 
-and generates a mapping matrix automatically.
+Upload multiple student documents (PDF or Word), enter their respective KSBs, 
+and generate one consolidated mapping document.
 """)
 
-# --- Sidebar: Inputs ---
-st.sidebar.header("1. Project Details")
-unit_name = st.sidebar.text_input("Unit Name/Code", placeholder="e.g. Unit 5 - Leadership")
-doc_title = st.sidebar.text_input("Document Title", placeholder="e.g. Portfolio Submission")
+# --- Sidebar: Uploads ---
+st.sidebar.header("1. Upload Documents")
+uploaded_files = st.sidebar.file_uploader(
+    "Upload student documents (PDF or Word)", 
+    type=['pdf', 'docx'], 
+    accept_multiple_files=True
+)
 
-st.sidebar.header("2. Define KSBs")
-st.sidebar.info("Enter the KSBs you want to search for (one per line).")
-ksb_input_raw = st.sidebar.text_area("KSB List", placeholder="K1\nK2\nS1\nS4\nB1")
+# --- Sidebar: KSBs per file ---
+file_ksb_map = {}
+if uploaded_files:
+    st.sidebar.header("2. Define KSBs per file")
+    for file in uploaded_files:
+        ksb_input = st.sidebar.text_area(
+            f"KSBs for {file.name}", 
+            placeholder="K1\nK2\nS1\nB1"
+        )
+        file_ksb_map[file.name] = [x.strip() for x in ksb_input.split('\n') if x.strip()]
 
-# Process KSB list into a clean list
-ksb_list = [x.strip() for x in ksb_input_raw.split('\n') if x.strip()]
-
-st.sidebar.header("3. Upload Document")
-uploaded_file = st.sidebar.file_uploader("Upload Main Document (PDF only)", type=['pdf'])
-
-# --- Logic Functions ---
-def extract_mappings(file, search_terms):
+# --- Helper Functions ---
+def extract_mappings_pdf(file, search_terms, doc_title):
     results = []
     with pdfplumber.open(file) as pdf:
         total_pages = len(pdf.pages)
         progress_bar = st.progress(0)
 
         for i, page in enumerate(pdf.pages):
-            page_num = i + 1
             text = page.extract_text()
-
             if text:
                 for term in search_terms:
                     pattern = r'\b' + re.escape(term) + r'\b'
                     if re.search(pattern, text, re.IGNORECASE):
                         results.append({
-                            "Unit": unit_name,
-                            "Title": doc_title,
+                            "Document": doc_title,
                             "KSB Reference": term,
-                            "Page Number": page_num
+                            "Page Number": i + 1
                         })
-
             progress_bar.progress((i + 1) / total_pages)
+    return results
 
+def extract_mappings_docx(file, search_terms, doc_title):
+    results = []
+    doc = Document(file)
+    text = "\n".join([para.text for para in doc.paragraphs])
+    for term in search_terms:
+        pattern = r'\b' + re.escape(term) + r'\b'
+        if re.search(pattern, text, re.IGNORECASE):
+            results.append({
+                "Document": doc_title,
+                "KSB Reference": term,
+                "Page Number": "N/A (Word)"
+            })
     return results
 
 # --- Main Execution ---
-if st.button("Generate Mapping Document", type="primary"):
-    if not uploaded_file:
-        st.error("Please upload a Main Document PDF.")
-    elif not ksb_list:
-        st.error("Please enter at least one KSB to search for.")
+if st.button("Generate Consolidated Mapping", type="primary"):
+    if not uploaded_files:
+        st.error("Please upload at least one document.")
     else:
-        with st.spinner("Scanning document..."):
+        all_results = []
+        with st.spinner("Scanning all documents..."):
             try:
-                uploaded_file.seek(0)
-                mappings = extract_mappings(uploaded_file, ksb_list)
+                for file in uploaded_files:
+                    ksb_list = file_ksb_map.get(file.name, [])
+                    if not ksb_list:
+                        continue
 
-                if mappings:
-                    df = pd.DataFrame(mappings)
-                    df = df.sort_values(by=['KSB Reference', 'Page Number'])
+                    if file.name.endswith(".pdf"):
+                        file.seek(0)
+                        mappings = extract_mappings_pdf(file, ksb_list, file.name)
+                    elif file.name.endswith(".docx"):
+                        file.seek(0)
+                        mappings = extract_mappings_docx(file, ksb_list, file.name)
+                    else:
+                        mappings = []
 
-                    st.success(f"Found {len(df)} matches!")
+                    all_results.extend(mappings)
+
+                if all_results:
+                    df = pd.DataFrame(all_results)
+                    df = df.sort_values(by=['Document', 'KSB Reference'])
+
+                    st.success(f"Found {len(df)} matches across {len(uploaded_files)} documents!")
                     st.dataframe(df, use_container_width=True)
 
-                    output = io.BytesIO()
-                    with pd.ExcelWriter(output, engine='openpyxl') as writer:
-                        df.to_excel(writer, index=False, sheet_name='Mapping')
+                    # Export consolidated results
+                    output_excel = io.BytesIO()
+                    with pd.ExcelWriter(output_excel, engine='openpyxl') as writer:
+                        df.to_excel(writer, index=False, sheet_name='Consolidated Mapping')
 
                     st.download_button(
-                        label="📥 Download Mapping (.xlsx)",
-                        data=output.getvalue(),
-                        file_name="KSB_Mapping_Document.xlsx",
+                        label="📥 Download Consolidated Mapping (.xlsx)",
+                        data=output_excel.getvalue(),
+                        file_name="All_KSB_Mappings.xlsx",
                         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                     )
+
+                    st.download_button(
+                        label="📥 Download Consolidated Mapping (.csv)",
+                        data=df.to_csv(index=False).encode('utf-8'),
+                        file_name="All_KSB_Mappings.csv",
+                        mime="text/csv"
+                    )
                 else:
-                    st.warning("No KSBs found in the document. Check your spelling or file content.")
+                    st.warning("No KSBs found in the uploaded documents.")
 
             except Exception as e:
                 st.error(f"An error occurred: {e}")
@@ -93,8 +127,9 @@ if st.button("Generate Mapping Document", type="primary"):
 st.markdown("---")
 st.markdown("### How to use this app:")
 st.markdown("""
-1. **Enter Details:** Type the Unit and Title on the left.
-2. **List KSBs:** Paste your specific KSB codes (e.g., `K5`, `S12`) on the left.
-3. **Upload:** Drag and drop your assignment/thesis PDF.
-4. **Generate:** Click the button to scan the PDF. The app will look for the exact text of your KSBs and tell you which page they are on.
+1. **Upload Documents:** Add multiple PDFs or Word files in the sidebar.  
+2. **Enter KSBs:** For each file, paste the relevant KSB codes.  
+3. **Generate:** Click the button to scan all documents.  
+4. **Download:** Export one consolidated mapping document in Excel or CSV.  
 """)
+
